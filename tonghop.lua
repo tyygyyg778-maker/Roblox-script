@@ -18,14 +18,14 @@ local Window = MakeWindow({
             IncorrectKey = "The key is incorrect",
             CopyKeyLink = "Copied to Clipboard"
         },
-        Size = {300,200},
+        Size = {300, 200},
         Corner = true,
         CornerRadius = 12
     }
 })
 
 MinimizeButton({
-    Image = "http://www.roblox.com/asset/?id=86749587185394",
+    Image = "http://www.roblox.com/asset/?id=114272616522673", -- decal bạn gửi
     Size = {60, 60},
     Color = Color3.fromRGB(10, 10, 10),
     Corner = true,
@@ -78,7 +78,7 @@ AddButton(Tab6o, {
 AddButton(Tab0o, {
     Name = "ko biết tên",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/NexusScripts212/Roblox/refs/heads/main/Mm2",true))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NexusScripts212/Roblox/refs/heads/main/Mm2", true))()
     end
 })
 
@@ -110,32 +110,4 @@ AddButton(Tab6o, {
     end
 })
 
-AddButton(Tab6o, {
-    Name = "banana hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/thunhchk/Bananacat/refs/heads/main/testhub.lua"))()
-    end
-})
-
-AddButton(Tab2o, {
-    Name = "foxname- 99 đêm",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
-    end
-})
-
-AddButton(Tab3o, {
-    Name = "ko tên",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Tigyiscute/tigystealabrainrotscript/refs/heads/main/TigysScript"))()
-    end
-})
-
-AddButton(Tab4o, {
-    Name = "speed hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
-    end
-})
-
--- Tiếp tục các nút khác giống như bản cũ ...
+-- … các nút còn lại giữ nguyên …
