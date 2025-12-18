@@ -1,97 +1,145 @@
---// SERVICES
+-- 👑 VUA HUB | FIX LAG VỪA (CODE GỐC)
+
+local CoreGui = game:GetService("CoreGui")
 local Players = game:GetService("Players")
-local UIS = game:GetService("UserInputService")
-local LP = Players.LocalPlayer
+local Lighting = game:GetService("Lighting")
+local player = Players.LocalPlayer
 
---// GUI SETUP
+-- Xóa GUI cũ nếu có
+pcall(function()
+    CoreGui:FindFirstChild("VUA_UI"):Destroy()
+end)
+
+-- ScreenGui
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "FixLagHub"
-ScreenGui.Parent = LP:WaitForChild("PlayerGui")
-ScreenGui.ResetOnSpawn = false
+ScreenGui.Name = "VUA_UI"
+ScreenGui.Parent = CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-local Main = Instance.new("Frame", ScreenGui)
-Main.Size = UDim2.fromScale(0.3,0.35)
-Main.Position = UDim2.fromScale(0.5,0.5)
-Main.AnchorPoint = Vector2.new(0.5,0.5)
-Main.BackgroundColor3 = Color3.fromRGB(25,25,25)
-Main.BorderSizePixel = 0
+-- Main Frame
+local Main = Instance.new("Frame")
+Main.Parent = ScreenGui
+Main.Size = UDim2.new(0, 330, 0, 160)
+Main.Position = UDim2.new(0.5, -165, 0.25, 0)
+Main.BackgroundColor3 = Color3.fromRGB(15,15,15)
 Main.Active = true
 Main.Draggable = true
-Instance.new("UICorner", Main).CornerRadius = UDim.new(0,16)
 
---// TITLE
-local Title = Instance.new("TextLabel", Main)
-Title.Size = UDim2.new(1,0,0,40)
+Instance.new("UICorner", Main).CornerRadius = UDim.new(0,12)
+local Stroke = Instance.new("UIStroke", Main)
+Stroke.Color = Color3.fromRGB(255,0,0)
+Stroke.Thickness = 2
+
+-- Title
+local Title = Instance.new("TextLabel")
+Title.Parent = Main
+Title.Size = UDim2.new(1, -80, 0, 40)
+Title.Position = UDim2.new(0, 15, 0, 0)
 Title.BackgroundTransparency = 1
-Title.Text = "⚡ Fix Lag Hub"
+Title.Text = "VUA"
 Title.Font = Enum.Font.GothamBold
-Title.TextSize = 20
-Title.TextColor3 = Color3.fromRGB(0,170,255)
+Title.TextSize = 22
+Title.TextXAlignment = Enum.TextXAlignment.Left
+Title.TextColor3 = Color3.fromRGB(255,215,0)
 
---// BUTTON CREATOR
-local function createButton(text, y, callback)
-    local btn = Instance.new("TextButton", Main)
-    btn.Size = UDim2.new(0.9,0,0,40)
-    btn.Position = UDim2.new(0.05,0,0,y)
-    btn.BackgroundColor3 = Color3.fromRGB(35,35,35)
-    btn.Text = text
-    btn.Font = Enum.Font.Gotham
-    btn.TextSize = 16
-    btn.TextColor3 = Color3.fromRGB(255,255,255)
-    btn.AutoButtonColor = false
-    Instance.new("UICorner", btn).CornerRadius = UDim.new(0,12)
-    btn.MouseButton1Click:Connect(function()
-        pcall(callback)
-    end)
-end
+-- Nút thu gọn
+local Min = Instance.new("TextButton")
+Min.Parent = Main
+Min.Size = UDim2.new(0, 30, 0, 30)
+Min.Position = UDim2.new(1, -70, 0, 5)
+Min.Text = "-"
+Min.Font = Enum.Font.GothamBold
+Min.TextSize = 20
+Min.TextColor3 = Color3.fromRGB(255,255,255)
+Min.BackgroundColor3 = Color3.fromRGB(40,40,40)
+Instance.new("UICorner", Min).CornerRadius = UDim.new(0,6)
 
---// FIX LAG FUNCTIONS
-local function fixLag(level)
-    for _,v in pairs(workspace:GetDescendants()) do
-        if v:IsA("ParticleEmitter") or v:IsA("Trail") or v:IsA("Explosion") then
-            v.Enabled = false
-        end
-        if v:IsA("MeshPart") or v:IsA("Part") or v:IsA("UnionOperation") then
-            if level == "nhẹ" then
-                v.Material = Enum.Material.Plastic
-                v.CastShadow = true
-                v.Transparency = 0.2
-            elseif level == "trung" then
-                v.Material = Enum.Material.Plastic
-                v.CastShadow = false
-                v.Transparency = 0.5
-            elseif level == "nặng" then
-                v.Material = Enum.Material.Plastic
-                v.CastShadow = false
-                v.Transparency = 0.8
-            end
-        end
-    end
-end
+-- Nút đóng
+local Close = Instance.new("TextButton")
+Close.Parent = Main
+Close.Size = UDim2.new(0, 30, 0, 30)
+Close.Position = UDim2.new(1, -35, 0, 5)
+Close.Text = "X"
+Close.Font = Enum.Font.GothamBold
+Close.TextSize = 18
+Close.TextColor3 = Color3.fromRGB(255,255,255)
+Close.BackgroundColor3 = Color3.fromRGB(180,40,40)
+Instance.new("UICorner", Close).CornerRadius = UDim.new(0,6)
 
---// BUTTONS
-createButton("💡 Lag Nhẹ", 50, function()
-    fixLag("nhẹ")
-    warn("Fix Lag Nhẹ Bật")
-end)
-
-createButton("⚡ Lag Trung Bình", 100, function()
-    fixLag("trung")
-    warn("Fix Lag Trung Bình Bật")
-end)
-
-createButton("🔥 Lag Nặng", 150, function()
-    fixLag("nặng")
-    warn("Fix Lag Nặng Bật")
-end)
-
-createButton("❌ Đóng Menu", 200, function()
+Close.MouseButton1Click:Connect(function()
     ScreenGui:Destroy()
 end)
 
---// TOGGLE MENU (RightShift)
-UIS.InputBegan:Connect(function(input,gp)
-    if not gp and input.KeyCode == Enum.KeyCode.RightShift then
-        Main.Visible = not Main.Visible
+-- 🔘 Nút Fix Lag VỪA
+local FixLag = Instance.new("TextButton")
+FixLag.Parent = Main
+FixLag.Size = UDim2.new(0.8, 0, 0, 45)
+FixLag.Position = UDim2.new(0.1, 0, 0.55, 0)
+FixLag.Text = "Fix Lag (Vừa)"
+FixLag.Font = Enum.Font.GothamBold
+FixLag.TextSize = 20
+FixLag.TextColor3 = Color3.fromRGB(255,215,0)
+FixLag.BackgroundColor3 = Color3.fromRGB(25,25,25)
+Instance.new("UICorner", FixLag).CornerRadius = UDim.new(0,10)
+
+-- ⚙️ FIX LAG VỪA – CODE GỐC
+local function FixLagVUA_Medium()
+    settings().Rendering.QualityLevel = Enum.QualityLevel.Level03
+
+    Lighting.GlobalShadows = false
+    Lighting.FogEnd = 9e9
+    Lighting.Brightness = 2
+    Lighting.EnvironmentDiffuseScale = 0.3
+    Lighting.EnvironmentSpecularScale = 0.3
+
+    for _,v in pairs(Lighting:GetChildren()) do
+        if v:IsA("SunRaysEffect")
+        or v:IsA("BloomEffect")
+        or v:IsA("DepthOfFieldEffect") then
+            v:Destroy()
+        end
+    end
+
+    for _,v in pairs(workspace:GetDescendants()) do
+        if v:IsA("BasePart") then
+            v.Material = Enum.Material.SmoothPlastic
+            v.Reflectance = 0
+            v.CastShadow = false
+        elseif v:IsA("ParticleEmitter")
+        or v:IsA("Trail") then
+            v.Enabled = false
+        end
+    end
+
+    if player.Character then
+        for _,v in pairs(player.Character:GetDescendants()) do
+            if v:IsA("ParticleEmitter")
+            or v:IsA("Trail") then
+                v.Enabled = false
+            end
+        end
+    end
+
+    pcall(function()
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "VUA",
+            Text = "Fix Lag VỪA đã bật ⚡",
+            Duration = 3
+        })
+    end)
+end
+
+FixLag.MouseButton1Click:Connect(FixLagVUA_Medium)
+
+-- Thu gọn FIX CHUẨN (không lòi chữ)
+local minimized = false
+Min.MouseButton1Click:Connect(function()
+    minimized = not minimized
+    if minimized then
+        Main.Size = UDim2.new(0, 330, 0, 40)
+        FixLag.Visible = false
+    else
+        Main.Size = UDim2.new(0, 330, 0, 160)
+        FixLag.Visible = true
     end
 end)
