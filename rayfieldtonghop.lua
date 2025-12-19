@@ -1,4 +1,4 @@
--- Load Rayfield
+-- Load Rayfield (mặc định, không chỉnh theme)
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
 -- Tạo Window
@@ -6,13 +6,11 @@ local Window = Rayfield:CreateWindow({
     Name = "VUA HUB",
     LoadingTitle = "VUA",
     LoadingSubtitle = "by VUA",
-    ConfigurationSaving = {
-        Enabled = false
-    },
-    KeySystem = false -- Không dùng key
+    ConfigurationSaving = { Enabled = false },
+    KeySystem = false
 })
 
--- Tabs gốc
+-- Tabs cũ
 local TabLinhTinh = Window:CreateTab("Linh tinh", 4483362458)
 local TabFly = Window:CreateTab("Bay / Fly", 4483362458)
 local TabCrouch = Window:CreateTab("Ngồi / Ẩn", 4483362458)
@@ -21,7 +19,7 @@ local TabSpeedHitbox = Window:CreateTab("Speed / Hitbox", 4483362458)
 
 -- Helper chạy script
 local function RunScript(url)
-    loadstring(game:HttpGet(url, true))()
+    loadstring(game:HttpGet(url))()
 end
 
 -- ===== LINH TINH =====
@@ -43,7 +41,7 @@ end })
 
 -- ===== BAY =====
 TabFly:CreateButton({ Name = "Fly", Callback = function()
-    RunScript("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt")
+    RunScript("https://rawscripts.net/raw/Universal-Script-Better-Fly-GUI-44304")
 end })
 
 -- ===== NGỒI / ẨN =====
@@ -70,15 +68,15 @@ TabSpeedHitbox:CreateButton({ Name = "Speed Hub X", Callback = function()
     RunScript("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua")
 end })
 
--- ===== THÊM 2 TAB MỚI =====
-local TabMusic = Window:CreateTab("Music Player", 4483362458)
-TabMusic:CreateButton({ Name = "Music Player Tool", Callback = function()
-    RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/phatnhac.lua")
+-- ===== THÊM 2 SCRIPT MỚI =====
+local TabRedz = Window:CreateTab("Redz Hub", 4483362458)
+TabRedz:CreateButton({ Name = "Redz Hub Script", Callback = function()
+    RunScript("https://raw.githubusercontent.com/huy384/redzHub/main/redzHub.lua")
 end })
 
-local TabSavePos = Window:CreateTab("Lưu vị trí", 4483362458)
-TabSavePos:CreateButton({ Name = "Save Position Tool", Callback = function()
-    RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/Menutele.lua")
+local TabPunch = Window:CreateTab("Punch NPC", 4483362458)
+TabPunch:CreateButton({ Name = "Punch NPC Script", Callback = function()
+    RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/Punchvisual.lua")
 end })
 
 -- Thông báo khi load xong
