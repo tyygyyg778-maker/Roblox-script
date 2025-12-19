@@ -12,7 +12,7 @@ local Window = MakeWindow({
         KeySystem = true,
         Title = "Premium version",
         Description = "",
-        KeyLink = "script699",
+        KeyLink = "https://linkvertise.com/2510474/kCJJKD7JXDH5?o=sharing",
         Keys = {"vuascript"},
         Notifi = {
             Notifications = true,
