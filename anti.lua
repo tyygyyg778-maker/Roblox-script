@@ -3,8 +3,8 @@ local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
 local Window = Rayfield:CreateWindow({
     Name = "ANTI HUB",
-    LoadingTitle = "ANTI SYSTEM",
-    LoadingSubtitle = "by Rayfield",
+    LoadingTitle = "ANTI",
+    LoadingSubtitle = "by VUA",
     ConfigurationSaving = {
         Enabled = false
     }
@@ -42,10 +42,10 @@ AntiTab:CreateToggle({
 })
 
 --------------------------------------------------
--- ANTI BAN (SOFT)
+-- ANTI BAN 
 --------------------------------------------------
 AntiTab:CreateToggle({
-    Name = "Anti Ban (Soft)",
+    Name = "Anti Ban ",
     CurrentValue = false,
     Callback = function(v)
         getgenv().AntiBan = v
