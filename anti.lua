@@ -5,11 +5,11 @@ local Window = Rayfield:CreateWindow({
     Name = "ANTI HUB",
     LoadingTitle = "ANTI",
     LoadingSubtitle = "by VUA",
-    ConfigurationSaving = {
-        Enabled = false
-    }
+    ConfigurationSaving = { Enabled = false },
+    KeySystem = false
 })
 
+--// Services
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local VirtualUser = game:GetService("VirtualUser")
@@ -45,7 +45,7 @@ AntiTab:CreateToggle({
 -- ANTI BAN 
 --------------------------------------------------
 AntiTab:CreateToggle({
-    Name = "Anti Ban ",
+    Name = "Anti Ban (Soft)",
     CurrentValue = false,
     Callback = function(v)
         getgenv().AntiBan = v
@@ -69,9 +69,9 @@ AntiTab:CreateToggle({
         getgenv().AntiAFK = v
         if v then
             LP.Idled:Connect(function()
-                VirtualUser:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+                VirtualUser:Button2Down(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
                 task.wait(1)
-                VirtualUser:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+                VirtualUser:Button2Up(Vector2.new(0,0), workspace.CurrentCamera.CFrame)
             end)
         end
     end
@@ -139,11 +139,17 @@ AntiTab:CreateToggle({
     Callback = function(v)
         getgenv().AntiVoid = v
         RunService.Heartbeat:Connect(function()
-            if getgenv().AntiVoid and LP.Character and LP.Character:FindFirstChild("HumanoidRootPart") then
-                local hrp = LP.Character.HumanoidRootPart
-                if hrp.Position.Y < -120 then
-                    hrp.CFrame = CFrame.new(0, 20, 0)
-                end
+            if not getgenv().AntiVoid then return end
+
+            local char = LP.Character
+            local hrp = char and char:FindFirstChild("HumanoidRootPart")
+
+            if hrp and hrp.Position.Y < -100 then -- ngưỡng -100
+                hrp.CFrame = CFrame.new(
+                    hrp.Position.X,
+                    15, -- teleport lên
+                    hrp.Position.Z
+                )
             end
         end)
     end
@@ -165,4 +171,13 @@ AntiTab:CreateToggle({
             end
         end)
     end
+})
+
+--------------------------------------------------
+-- NOTIFY
+--------------------------------------------------
+Rayfield:Notify({
+    Title = "ANTI HUB",
+    Content = "Loaded Successfully",
+    Duration = 5
 })
