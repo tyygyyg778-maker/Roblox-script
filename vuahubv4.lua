@@ -10,7 +10,7 @@ local Window = Rayfield:CreateWindow({
     KeySystem = false
 })
 
--- Tabs chính (XOÁ tab Redz Hub)
+-- Tabs chính
 local TabLinhTinh    = Window:CreateTab("Linh tinh", 4483362458)
 local TabFly         = Window:CreateTab("Bay / Fly", 4483362458)
 local TabCrouch      = Window:CreateTab("Ngồi / Ẩn", 4483362458)
@@ -45,7 +45,6 @@ TabLinhTinh:CreateButton({ Name = "Fake Dead", Callback = function()
     RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/refs/heads/main/fakedead.lua")
 end })
 
--- 👉 Add Auto Jump + Shiftlock + God Mode vào Linh Tinh
 TabLinhTinh:CreateButton({ Name = "Auto Jump", Callback = function()
     RunScript("https://raw.githubusercontent.com/catwljzy/catwljz/main/aotojump.txt")
 end })
@@ -63,6 +62,11 @@ TabFly:CreateButton({ Name = "Fly", Callback = function()
     RunScript("https://rawscripts.net/raw/Universal-Script-Better-Fly-GUI-44304")
 end })
 
+-- ✅ ADD ANTI CỦA M (KHÔNG XOÁ GÌ)
+TabFly:CreateButton({ Name = "Anti", Callback = function()
+    RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/anti.lua")
+end })
+
 -- ===== NGỒI / ẨN =====
 TabCrouch:CreateButton({ Name = "Invisible", Callback = function()
     RunScript("https://rawscripts.net/raw/Universal-Script-Awesome-Invisible-man-21074")
@@ -72,7 +76,7 @@ TabCrouch:CreateButton({ Name = "Crouch", Callback = function()
     RunScript("https://raw.githubusercontent.com/Azizanzz0/Scripts/refs/heads/main/Crouching.txt")
 end })
 
--- ===== SPEED / HITBOX (GỘP REDZ HUB) =====
+-- ===== SPEED / HITBOX =====
 TabSpeedHitbox:CreateButton({ Name = "Hitbox", Callback = function()
     RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/refs/heads/main/Hitbox.lua")
 end })
