@@ -141,7 +141,7 @@ AntiTab:CreateToggle({
         RunService.Heartbeat:Connect(function()
             if getgenv().AntiVoid and LP.Character and LP.Character:FindFirstChild("HumanoidRootPart") then
                 local hrp = LP.Character.HumanoidRootPart
-                if hrp.Position.Y < -50 then
+                if hrp.Position.Y < -120 then
                     hrp.CFrame = CFrame.new(0, 20, 0)
                 end
             end
