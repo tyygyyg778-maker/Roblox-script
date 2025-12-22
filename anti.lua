@@ -45,7 +45,7 @@ AntiTab:CreateToggle({
 -- ANTI BAN 
 --------------------------------------------------
 AntiTab:CreateToggle({
-    Name = "Anti Ban (Soft)",
+    Name = "Anti Ban",
     CurrentValue = false,
     Callback = function(v)
         getgenv().AntiBan = v
