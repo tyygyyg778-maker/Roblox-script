@@ -4,7 +4,7 @@ local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 -- Window
 local Window = Rayfield:CreateWindow({
     Name = "VUA HUB V4",
-    LoadingTitle = "VUA",
+    LoadingTitle = "VUA V4",
     LoadingSubtitle = "by VUA",
     ConfigurationSaving = { Enabled = false },
     KeySystem = false
@@ -12,12 +12,12 @@ local Window = Rayfield:CreateWindow({
 
 -- Tabs chính
 local TabLinhTinh    = Window:CreateTab("Linh tinh", 4483362458)
-local TabFly         = Window:CreateTab("Bay / Fly", 4483362458)
+local TabFly         = Window:CreateTab("Anti / Fly", 4483362458)
 local TabCrouch      = Window:CreateTab("Ngồi / Ẩn", 4483362458)
-local TabSpeedHitbox = Window:CreateTab("Speed / Hitbox", 4483362458)
+local TabSpeedHitbox = Window:CreateTab("Speed x / Hitbox", 4483362458)
 local TabCombat      = Window:CreateTab("Combat", 4483362458)
 local TabServer      = Window:CreateTab("Server", 4483362458)
-local TabMusic       = Window:CreateTab("Music Player", 4483362458)
+local TabMusic       = Window:CreateTab("Music tool", 4483362458)
 
 -- Helper
 local function RunScript(url)
@@ -62,10 +62,17 @@ TabFly:CreateButton({ Name = "Fly", Callback = function()
     RunScript("https://rawscripts.net/raw/Universal-Script-Better-Fly-GUI-44304")
 end })
 
--- ✅ ADD ANTI CỦA M (KHÔNG XOÁ GÌ)
 TabFly:CreateButton({ Name = "Anti", Callback = function()
     RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/anti.lua")
 end })
+
+-- 👉 ADD VOID
+TabFly:CreateButton({
+    Name = "VOID",
+    Callback = function()
+        RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/refs/heads/main/Void.lua")
+    end
+})
 
 -- ===== NGỒI / ẨN =====
 TabCrouch:CreateButton({ Name = "Invisible", Callback = function()
@@ -110,6 +117,14 @@ end })
 TabServer:CreateButton({ Name = "Hop Server", Callback = function()
     RunScript("https://raw.githubusercontent.com/anuragaming1/Meow_gaming/refs/heads/main/Servervip.lua.txt")
 end })
+
+-- 👉 ADD LƯU MENU
+TabServer:CreateButton({
+    Name = "Lưu vị trí",
+    Callback = function()
+        RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/refs/heads/main/Menutele.lua")
+    end
+})
 
 -- ===== MUSIC =====
 TabMusic:CreateButton({ Name = "Music Player Tool", Callback = function()
