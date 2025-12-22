@@ -1,4 +1,4 @@
--- 👑 VUA HITBOX SCRIPT (Compact)
+--// VUA HITBOX SCRIPT (Fixed Toggle)
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -74,11 +74,6 @@ sizeBox.FocusLost:Connect(function()
 	end
 end)
 
-toggle.MouseButton1Click:Connect(function()
-	HITBOX = not HITBOX
-	toggle.Text = HITBOX and "👑 VUA : ON" or "Enable Hitbox"
-end)
-
 minBtn.MouseButton1Click:Connect(function()
 	MINIMIZED = not MINIMIZED
 	content.Visible = not MINIMIZED
@@ -87,6 +82,32 @@ minBtn.MouseButton1Click:Connect(function()
 end)
 
 -- HITBOX LOGIC
+local originalProperties = {}
+
+toggle.MouseButton1Click:Connect(function()
+	HITBOX = not HITBOX
+	toggle.Text = HITBOX and "👑 VUA : ON" or "Enable Hitbox"
+
+	if not HITBOX then
+		-- reset tất cả người chơi về nguyên trạng
+		for _,plr in pairs(Players:GetPlayers()) do
+			if plr ~= LocalPlayer and plr.Character then
+				local hrp = plr.Character:FindFirstChild("HumanoidRootPart")
+				if hrp then
+					local props = originalProperties[plr]
+					if props then
+						hrp.Size = props.Size
+						hrp.Transparency = props.Transparency
+						hrp.Color = props.Color
+						hrp.Material = props.Material
+						hrp.CanCollide = props.CanCollide
+					end
+				end
+			end
+		end
+	end
+end)
+
 RunService.RenderStepped:Connect(function()
 	if not HITBOX then return end
 
@@ -94,9 +115,19 @@ RunService.RenderStepped:Connect(function()
 		if plr ~= LocalPlayer and plr.Character then
 			local hrp = plr.Character:FindFirstChild("HumanoidRootPart")
 			if hrp then
-				hrp.Size = Vector3.new(SIZE, SIZE, SIZE)
+				-- lưu trạng thái gốc nếu chưa lưu
+				if not originalProperties[plr] then
+					originalProperties[plr] = {
+						Size = hrp.Size,
+						Transparency = hrp.Transparency,
+						Color = hrp.Color,
+						Material = hrp.Material,
+						CanCollide = hrp.CanCollide
+					}
+				end
+				hrp.Size = Vector3.new(SIZE,SIZE,SIZE)
 				hrp.Transparency = 0.5
-				hrp.Color = Color3.fromRGB(170,0,0) -- đỏ VUA
+				hrp.Color = Color3.fromRGB(170,0,0)
 				hrp.Material = Enum.Material.Neon
 				hrp.CanCollide = false
 			end
