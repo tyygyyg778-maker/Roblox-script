@@ -1,75 +1,58 @@
--- Load Rayfield
+-- SERVICES
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UIS = game:GetService("UserInputService")
+local Camera = workspace.CurrentCamera
+local LP = Players.LocalPlayer
+
+-- LOAD RAYFIELD
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
--- Window
+-- WINDOW
 local Window = Rayfield:CreateWindow({
-    Name = "ngoc oanhh",
+    Name = "ngocc oanhh",
     LoadingTitle = "ngoc oanhh",
     LoadingSubtitle = "by oanh",
-    ConfigurationSaving = { Enabled = false },
+    ConfigurationSaving = {Enabled = false},
     KeySystem = false
 })
 
--- Services
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local LP = Players.LocalPlayer
-local Camera = workspace.CurrentCamera
+-- TABS
+local TabCombat = Window:CreateTab("AIM", 4483362458)
+local TabVisual = Window:CreateTab("ESP", 4483362458)
+local TabMove   = Window:CreateTab("SPEED", 4483362458)
 
--- Tab
-local TabCombat = Window:CreateTab("Combat / Visual", 4483362458)
 
---------------------------------------------------
--- ESP VIỀN + TÊN
---------------------------------------------------
-local ESP = false
 
-TabCombat:CreateToggle({
-    Name = "ESP Viền + Tên",
-    CurrentValue = false,
-    Callback = function(v)
-        ESP = v
-        if not v then
-            for _,p in pairs(Players:GetPlayers()) do
-                if p.Character then
-                    if p.Character:FindFirstChild("VUA_ESP") then
-                        p.Character.VUA_ESP:Destroy()
-                    end
-                    if p.Character:FindFirstChild("VUA_NAME") then
-                        p.Character.VUA_NAME:Destroy()
-                    end
-                end
-            end
-        end
-    end
-})
+------------------------------------------------
+-- AIMBOT SETTINGS
+------------------------------------------------
+local AimEnabled = false
+local FOV_RADIUS = 120
+local AIM_STRENGTH = 0.38 -- CỰC DÍNH
 
---------------------------------------------------
--- AIMLOCK XOAY NGƯỜI (KHÔNG GIẬT MÀN)
---------------------------------------------------
-local Aimlock = false
-local AimTarget = nil
+-- VÒNG AIM
+local circle = Drawing.new("Circle")
+circle.Color = Color3.fromRGB(255,255,255)
+circle.Thickness = 2
+circle.Filled = false
+circle.Visible = false
 
-TabCombat:CreateToggle({
-    Name = "Aimlock (Xoay người)",
-    CurrentValue = false,
-    Callback = function(v)
-        Aimlock = v
-        AimTarget = nil
-    end
-})
-
--- Lấy target gần tâm màn hình
-local function GetClosestPlayer()
-    local closest, dist = nil, math.huge
-    for _,p in pairs(Players:GetPlayers()) do
-        if p ~= LP and p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
-            local pos, onscreen = Camera:WorldToViewportPoint(p.Character.HumanoidRootPart.Position)
+------------------------------------------------
+-- AIMBOT FUNCTIONS
+------------------------------------------------
+local function getNearestTarget()
+    local closest, dist = nil, FOV_RADIUS
+    for _,plr in pairs(Players:GetPlayers()) do
+        if plr ~= LP and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+            local hrp = plr.Character.HumanoidRootPart
+            local pos, onscreen = Camera:WorldToViewportPoint(hrp.Position)
             if onscreen then
-                local mag = (Vector2.new(pos.X, pos.Y) - Vector2.new(Camera.ViewportSize.X/2, Camera.ViewportSize.Y/2)).Magnitude
+                local mag = (Vector2.new(pos.X,pos.Y)
+                - Vector2.new(Camera.ViewportSize.X/2, Camera.ViewportSize.Y/2)).Magnitude
                 if mag < dist then
                     dist = mag
-                    closest = p
+                    closest = hrp
                 end
             end
         end
@@ -77,76 +60,106 @@ local function GetClosestPlayer()
     return closest
 end
 
---------------------------------------------------
--- MAIN LOOP
---------------------------------------------------
+------------------------------------------------
+-- AIMBOT LOOP
+------------------------------------------------
 RunService.RenderStepped:Connect(function()
-    --------------------------------------------------
-    -- ESP
-    --------------------------------------------------
-    if ESP then
-        for _,p in pairs(Players:GetPlayers()) do
-            if p ~= LP and p.Character and p.Character:FindFirstChild("Head") then
-                local char = p.Character
+    circle.Position = Vector2.new(Camera.ViewportSize.X/2, Camera.ViewportSize.Y/2)
+    circle.Radius = FOV_RADIUS
 
-                -- Highlight
-                local hl = char:FindFirstChild("VUA_ESP")
-                if not hl then
-                    hl = Instance.new("Highlight")
-                    hl.Name = "VUA_ESP"
-                    hl.FillTransparency = 1
-                    hl.OutlineTransparency = 0
-                    hl.Parent = char
-                end
+    if AimEnabled then
+        local target = getNearestTarget()
+        if target and LP.Character and LP.Character:FindFirstChild("HumanoidRootPart") then
+            local myHRP = LP.Character.HumanoidRootPart
+            local aimPos = target.Position + Vector3.new(0,1.3,0)
 
-                -- Name
-                local gui = char:FindFirstChild("VUA_NAME")
-                if not gui then
-                    gui = Instance.new("BillboardGui")
-                    gui.Name = "VUA_NAME"
-                    gui.Size = UDim2.new(0,100,0,18)
-                    gui.StudsOffset = Vector3.new(0,2.2,0)
-                    gui.AlwaysOnTop = true
-                    gui.Parent = char.Head
+            -- XOAY NGƯỜI
+            local bodyCF = CFrame.new(myHRP.Position, Vector3.new(
+                aimPos.X, myHRP.Position.Y, aimPos.Z
+            ))
+            myHRP.CFrame = myHRP.CFrame:Lerp(bodyCF, AIM_STRENGTH)
 
-                    local txt = Instance.new("TextLabel", gui)
-                    txt.Size = UDim2.new(1,0,1,0)
-                    txt.BackgroundTransparency = 1
-                    txt.TextScaled = true
-                    txt.Font = Enum.Font.GothamMedium
-                    txt.TextStrokeTransparency = 0.4
-                    txt.Text = p.Name
-                    txt.Name = "Text"
-                end
-
-                local color = Color3.fromHSV(tick()%5/5,1,1)
-                hl.OutlineColor = color
-                gui.Text.TextColor3 = color
-            end
-        end
-    end
-
-    --------------------------------------------------
-    -- AIMLOCK 
-    --------------------------------------------------
-    if Aimlock and LP.Character and LP.Character:FindFirstChild("HumanoidRootPart") then
-        if not AimTarget or not AimTarget.Character then
-            AimTarget = GetClosestPlayer()
-        end
-
-        if AimTarget and AimTarget.Character and AimTarget.Character:FindFirstChild("HumanoidRootPart") then
-            local hrp = LP.Character.HumanoidRootPart
-            local targetPos = AimTarget.Character.HumanoidRootPart.Position
-            hrp.CFrame = CFrame.new(hrp.Position, Vector3.new(targetPos.X, hrp.Position.Y, targetPos.Z))
+            -- XOAY CAMERA
+            Camera.CFrame = Camera.CFrame:Lerp(
+                CFrame.new(Camera.CFrame.Position, aimPos),
+                AIM_STRENGTH
+            )
         end
     end
 end)
 
---------------------------------------------------
+------------------------------------------------
+-- AIMBOT TOGGLE
+------------------------------------------------
+TabCombat:CreateToggle({
+    Name = "Aimbot",
+    CurrentValue = false,
+    Callback = function(v)
+        AimEnabled = v
+        circle.Visible = v
+    end
+})
+
+TabCombat:CreateSlider({
+    Name = "FOV Aim",
+    Range = {50,300},
+    Increment = 5,
+    CurrentValue = 120,
+    Callback = function(v)
+        FOV_RADIUS = v
+    end
+})
+
+------------------------------------------------
+-- ESP + NAME
+------------------------------------------------
+local ESP = false
+
+TabVisual:CreateToggle({
+    Name = "ESP",
+    CurrentValue = false,
+    Callback = function(v)
+        ESP = v
+    end
+})
+
+RunService.RenderStepped:Connect(function()
+    for _,plr in pairs(Players:GetPlayers()) do
+        if plr ~= LP and plr.Character then
+            if ESP then
+                local hl = plr.Character:FindFirstChild("VUA_ESP") or Instance.new("Highlight", plr.Character)
+                hl.Name = "VUA_ESP"
+                hl.FillTransparency = 1
+                hl.OutlineColor = Color3.fromHSV(tick()%5/5,1,1)
+            else
+                if plr.Character:FindFirstChild("VUA_ESP") then
+                    plr.Character.VUA_ESP:Destroy()
+                end
+            end
+        end
+    end
+end)
+
+------------------------------------------------
+-- SPEED
+------------------------------------------------
+TabMove:CreateSlider({
+    Name = "Speed",
+    Range = {16,300},
+    Increment = 5,
+    CurrentValue = 16,
+    Callback = function(v)
+        if LP.Character and LP.Character:FindFirstChild("Humanoid") then
+            LP.Character.Humanoid.WalkSpeed = v
+        end
+    end
+})
+
+------------------------------------------------
 -- NOTIFY
---------------------------------------------------
+------------------------------------------------
 Rayfield:Notify({
-    Title = "ngoc oanhh",
-    Content = "ESP + Aimlock",
+    Title = "ngoc oanh",
+    Content = "Aimbot + ESP + Speed",
     Duration = 5
 })
