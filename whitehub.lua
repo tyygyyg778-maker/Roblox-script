@@ -13,7 +13,7 @@ local Window = Rayfield:CreateWindow({
 -- Tabs chính
 local TabLinhTinh    = Window:CreateTab("necessary", 4483362458)
 local TabFly         = Window:CreateTab("Anti / Fly", 4483362458)
-local TabCrouch      = Window:CreateTab("Ngồi / Ẩn", 4483362458)
+local TabCrouch      = Window:CreateTab("Sit / invisibility", 4483362458)
 local TabSpeedHitbox = Window:CreateTab("Speed x / blox fruit", 4483362458)
 local TabCombat      = Window:CreateTab("Combat", 4483362458)
 local TabServer      = Window:CreateTab("Server", 4483362458)
