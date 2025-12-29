@@ -10,7 +10,7 @@ local SCRIPT_LINK = "https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-s
 local Window = Rayfield:CreateWindow({
 	Name = "GET KEY 🐧",
 	LoadingTitle = "get key",
-	LoadingSubtitle = "vua",
+	LoadingSubtitle = "white",
 	ConfigurationSaving = { Enabled = false }
 })
 
