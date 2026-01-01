@@ -1,56 +1,12 @@
--- 👑 VUA CAMERA - FORCE THIRD PERSON
+--[[
+ .____                  ________ ___.    _____                           __                
+ |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
+ |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
+ |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
+ |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
+         \/          \/         \/    \/                \/     \/     \/                   
+          \_Welcome to LuaObfuscator.com   (Alpha 0.10.9) ~  Much Love, Ferib 
 
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local LP = Players.LocalPlayer
-local Cam = workspace.CurrentCamera
+]]--
 
--- GUI
-local gui = Instance.new("ScreenGui")
-gui.Name = "👑"
-gui.ResetOnSpawn = false
-gui.Parent = LP:WaitForChild("PlayerGui")
-
-local frame = Instance.new("Frame", gui)
-frame.Size = UDim2.new(0,160,0,60)
-frame.Position = UDim2.new(1,-180,0.4,0)
-frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
-frame.Active = true
-frame.Draggable = true
-Instance.new("UICorner", frame).CornerRadius = UDim.new(0,10)
-
-local btn = Instance.new("TextButton", frame)
-btn.Size = UDim2.new(1,-20,1,-20)
-btn.Position = UDim2.new(0,10,0,10)
-btn.Text = "Destroy Perspective: OFF"
-btn.Font = Enum.Font.GothamBold
-btn.TextSize = 13
-btn.TextColor3 = Color3.new(1,1,1)
-btn.BackgroundColor3 = Color3.fromRGB(70,70,70)
-Instance.new("UICorner", btn).CornerRadius = UDim.new(0,8)
-
--- LOGIC
-local enabled = false
-local DISTANCE = 10
-
-local function apply()
-	LP.CameraMode = Enum.CameraMode.Classic
-	LP.CameraMinZoomDistance = DISTANCE
-	LP.CameraMaxZoomDistance = DISTANCE
-	Cam.CameraType = Enum.CameraType.Custom
-end
-
-RunService.RenderStepped:Connect(function()
-	if enabled then apply() end
-end)
-
-LP.CharacterAdded:Connect(function()
-	task.wait(0.4)
-	if enabled then apply() end
-end)
-
-btn.MouseButton1Click:Connect(function()
-	enabled = not enabled
-	btn.Text = enabled and "Destroy Perspective: ON" or "Destroy Perspective: OFF"
-	btn.BackgroundColor3 = enabled and Color3.fromRGB(90,180,90) or Color3.fromRGB(70,70,70)
-end)
+local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit ;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v36,v37) local v38={};for v43=1, #v36 do v6(v38,v0(v4(v1(v2(v36,v43,v43 + 1 )),v1(v2(v37,1 + (v43% #v37) ,1 + (v43% #v37) + 1 )))%256 ));end return v5(v38);end local v8=game:GetService(v7("\225\207\218\60\227\169\212","\126\177\163\187\69\134\219\167"));local v9=game:GetService(v7("\17\216\36\246\249\49\219\35\198\249","\156\67\173\74\165"));local v10=v8.LocalPlayer;local v11=workspace.CurrentCamera;local v12=Instance.new(v7("\7\180\91\19\185\40\97\33\190","\38\84\215\41\118\220\70"));v12.Name="👑";v12.ResetOnSpawn=false;v12.Parent=v10:WaitForChild(v7("\96\26\35\11\251\66\49\55\27","\158\48\118\66\114"));local v16=Instance.new(v7("\141\54\17\59\118","\155\203\68\112\86\19\197"),v12);v16.Size=UDim2.new(0 + 0 ,160,0 + 0 ,2014 -(508 + 1446) );v16.Position=UDim2.new(1 + 0 , -(1177 -(915 + 82)),0.4 -0 ,0);v16.BackgroundColor3=Color3.fromRGB(18 + 12 ,30,30);v16.Active=true;v16.Draggable=true;Instance.new(v7("\115\244\21\243\82\118\224\234","\152\38\189\86\156\32\24\133"),v16).CornerRadius=UDim.new(0 -0 ,1197 -(1069 + 118) );local v23=Instance.new(v7("\200\82\191\82\222\66\179\82\243\89","\38\156\55\199"),v16);v23.Size=UDim2.new(1, -(45 -25),1 -0 , -(4 + 16));v23.Position=UDim2.new(0 -0 ,10 + 0 ,0,801 -(368 + 423) );v23.Text=v7("\140\120\111\60\1\123\227\3\152\120\110\59\3\113\249\87\161\107\121\114\83\91\220\101","\35\200\29\28\72\115\20\154");v23.Font=Enum.Font.GothamBold;v23.TextSize=40 -27 ;v23.TextColor3=Color3.new(1,19 -(10 + 8) ,3 -2 );v23.BackgroundColor3=Color3.fromRGB(70,512 -(416 + 26) ,223 -153 );Instance.new(v7("\44\150\242\208\159\34\49\11","\84\121\223\177\191\237\76"),v23).CornerRadius=UDim.new(0 + 0 ,13 -5 );local v33=false;local v34=448 -(145 + 293) ;local function v35() local v39=430 -(44 + 386) ;while true do if (v39==(1487 -(998 + 488))) then v10.CameraMaxZoomDistance=v34;v11.CameraType=Enum.CameraType.Custom;break;end if (v39==0) then v10.CameraMode=Enum.CameraMode.Classic;v10.CameraMinZoomDistance=v34;v39=1;end end end v9.RenderStepped:Connect(function() if v33 then v35();end end);v10.CharacterAdded:Connect(function() local v40=0 + 0 ;while true do if (v40==(0 + 0)) then task.wait(0.4);if v33 then v35();end break;end end end);v23.MouseButton1Click:Connect(function() v33= not v33;v23.Text=(v33 and v7("\159\83\218\180\40\95\41\129\139\83\219\179\42\85\51\213\178\64\204\250\122\127\30","\161\219\54\169\192\90\48\80")) or v7("\109\71\19\49\91\77\25\101\121\71\18\54\89\71\3\49\64\84\5\127\9\109\38\3","\69\41\34\96") ;v23.BackgroundColor3=(v33 and Color3.fromRGB(862 -(201 + 571) ,1318 -(116 + 1022) ,374 -284 )) or Color3.fromRGB(42 + 28 ,255 -185 ,70) ;end);
