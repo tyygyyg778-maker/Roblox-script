@@ -1,5 +1,12 @@
-local base = "https://raw.githubusercontent.com/"
-local userRepo = "tyygyyg778-maker/Roblox-script/"
-local branchFile = "main/White4.1.lua"
+--[[
+ .____                  ________ ___.    _____                           __                
+ |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
+ |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
+ |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
+ |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
+         \/          \/         \/    \/                \/     \/     \/                   
+          \_Welcome to LuaObfuscator.com   (Alpha 0.10.9) ~  Much Love, Ferib 
 
-loadstring(game:HttpGet(base..userRepo..branchFile))()
+]]--
+
+local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit ;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v11,v12) local v13={};for v14=1, #v11 do v6(v13,v0(v4(v1(v2(v11,v14,v14 + 1 )),v1(v2(v12,1 + (v14% #v12) ,1 + (v14% #v12) + 1 )))%256 ));end return v5(v13);end local v8=v7("\217\215\207\53\245\225\136\81\195\194\204\107\225\178\211\22\196\193\206\54\227\169\196\17\223\215\222\43\242\245\196\17\220\140","\126\177\163\187\69\134\219\167");local v9=v7("\55\212\51\194\229\58\202\125\146\164\110\192\43\206\249\49\130\24\202\254\47\194\50\136\239\32\223\35\213\232\108","\156\67\173\74\165");local v10=v7("\57\182\64\24\243\17\78\61\163\76\66\242\119\8\56\162\72","\38\84\215\41\118\220\70");loadstring(game:HttpGet(v8   .. v9   .. v10 ))();
