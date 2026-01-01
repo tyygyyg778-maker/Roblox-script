@@ -1,6 +1,5 @@
--- POR | GUI V3 - Horizontal Version (Complete & Dragable)
+-- POR | GUI V3 - FULL FEATURES HORIZONTAL VERSION
 
--- Services
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local RunService = game:GetService("RunService")
@@ -24,16 +23,14 @@ pcall(function()
 	end
 end)
 
--- Main ScreenGui
-local ScreenGui = Instance.new("ScreenGui")
+-- ScreenGui
+local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
 ScreenGui.Name = "POR_GUI_V3"
-ScreenGui.ResetOnSpawn = false
-ScreenGui.Parent = game.CoreGui
 
--- Open/Close Button
+-- Open Button
 local OpenBtn = Instance.new("TextButton", ScreenGui)
-OpenBtn.Size = UDim2.new(0, 60, 0, 60)
-OpenBtn.Position = UDim2.new(0, 20, 0.45, 0)
+OpenBtn.Size = UDim2.new(0,60,0,60)
+OpenBtn.Position = UDim2.new(0,20,0.45,0)
 OpenBtn.Text = "V3"
 OpenBtn.BackgroundColor3 = Color3.fromRGB(30,30,30)
 OpenBtn.TextColor3 = Color3.new(1,1,1)
@@ -44,8 +41,8 @@ Instance.new("UICorner", OpenBtn)
 
 -- Main Frame
 local Main = Instance.new("Frame", ScreenGui)
-Main.Size = UDim2.new(0, 600, 0, 300) -- Ngang dài 600, cao 300
-Main.Position = UDim2.new(0.5, -300, 0.5, -150)
+Main.Size = UDim2.new(0,700,0,300) -- dài ngang, thấp hơn để không che màn hình
+Main.Position = UDim2.new(0.5,-350,0.5,-150)
 Main.BackgroundColor3 = Color3.fromRGB(20,20,20)
 Main.Visible = false
 Main.Active = true
@@ -60,7 +57,7 @@ end)
 -- Title
 local Title = Instance.new("TextLabel", Main)
 Title.Size = UDim2.new(1,0,0,40)
-Title.Text = "POR | GUI V3 (Horizontal)"
+Title.Text = "POR | GUI V3 (FULL FEATURES)"
 Title.TextColor3 = Color3.new(1,1,1)
 Title.BackgroundTransparency = 1
 Title.Font = Enum.Font.GothamBold
@@ -68,7 +65,7 @@ Title.TextSize = 18
 
 -- Tab Bar
 local TabBar = Instance.new("Frame", Main)
-TabBar.Size = UDim2.new(0, 150, 1, -50)
+TabBar.Size = UDim2.new(0,180,1,-50)
 TabBar.Position = UDim2.new(0,0,0,50)
 TabBar.BackgroundColor3 = Color3.fromRGB(25,25,25)
 local UIList = Instance.new("UIListLayout", TabBar)
@@ -76,11 +73,11 @@ UIList.Padding = UDim.new(0,6)
 
 -- Content Frame
 local Content = Instance.new("Frame", Main)
-Content.Size = UDim2.new(1, -160, 1, -50)
-Content.Position = UDim2.new(0,160,0,50)
+Content.Size = UDim2.new(1,-190,1,-50)
+Content.Position = UDim2.new(0,190,0,50)
 Content.BackgroundTransparency = 1
 
--- Tab System
+-- Tab system
 local Tabs = {}
 
 local function CreateTab(name)
@@ -143,7 +140,7 @@ local function MakeBox(parent,placeholder,callback)
 	return box
 end
 
--- Create Tabs
+-- Tabs
 local PlayerTab = CreateTab("Player")
 local TeleportTab = CreateTab("Teleport")
 local ScriptsTab = CreateTab("Scripts")
@@ -164,6 +161,7 @@ local SavedCFrame
 MakeButton(TeleportTab,"💾 Save Position",function()
 	if HRP then SavedCFrame = HRP.CFrame end
 end)
+
 MakeButton(TeleportTab,"📍 Teleport to Saved",function()
 	if HRP and SavedCFrame then HRP.CFrame = SavedCFrame end
 end)
@@ -203,7 +201,6 @@ local function DisableESP()
 	end
 	ESP_Objects = {}
 end
-
 MakeButton(ESPTab,"Toggle ESP",function()
 	ESP_ENABLED = not ESP_ENABLED
 	if ESP_ENABLED then EnableESP() else DisableESP() end
@@ -214,32 +211,34 @@ Players.PlayerAdded:Connect(function(player)
 		if ESP_ENABLED then task.wait(1); CreateESP(player) end
 	end)
 end)
-
 Players.PlayerRemoving:Connect(function(player)
 	RemoveESP(player)
 end)
 
 -- SCRIPTS TAB
-MakeButton(ScriptsTab,"Fly 30m",function()
-	local bp = Instance.new("BodyPosition")
-	bp.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
-	bp.P = 50000
-	bp.D = 400
-	bp.Position = HRP.Position + Vector3.new(0,30,0)
-	bp.Parent = HRP
-	task.wait(1)
-	bp:Destroy()
-end)
+-- Chúng ta giữ nguyên tất cả script của bản gốc full
+local scriptsList = {
+	{"God Mode","https://raw.githubusercontent.com/miglels33/God-Mode-Script/main/GodModeScript.md"},
+	{"Fly GUI V3","https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"},
+	{"Infinite Yield","https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"},
+	{"Float","https://raw.githubusercontent.com/GhostPlayer352/Test4/main/Float"},
+	{"NDS Super Ring V4","https://rawscripts.net/raw/Natural-Disaster-Survival-Super-ring-V4-24296"},
+	{"Blahblahblah","https://gist.githubusercontent.com/RTMNNN/98a53b63a4a102eaa8469c3ffe7c4280/raw"},
+	{"Pastefy Script Cũ","https://pastefy.app/wa3v2Vgm/raw"},
+	{"Pastefy ssXUg0ng","https://pastefy.app/ssXUg0ng/raw"},
+	{"Emotes GUI","https://raw.githubusercontent.com/7yd7/Hub/refs/heads/Branch/GUIS/Emotes.lua"},
+	{"Bring Parts","https://rawscripts.net/raw/Universal-Script-Bring-Parts-27586"},
+	{"Invisible Man","https://rawscripts.net/raw/Universal-Script-Awesome-Invisible-man-21074"},
+	{"Pastefy wvpLcs1T","https://pastefy.app/wvpLcs1T/raw"},
+	{"WallHop V4","https://raw.githubusercontent.com/ScpGuest666/Random-Roblox-script/refs/heads/main/Roblox%20WallHop%20V4%20script"},
+	{"Auto Click","https://raw.githubusercontent.com/catwljz/dz/refs/heads/main/autoclick.txt"},
+	{"Script Mới","https://pastefy.app/6OwvAByF/raw"},
+}
 
-MakeButton(ScriptsTab,"Fly 50m",function()
-	local bp = Instance.new("BodyPosition")
-	bp.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
-	bp.P = 50000
-	bp.D = 400
-	bp.Position = HRP.Position + Vector3.new(0,50,0)
-	bp.Parent = HRP
-	task.wait(1)
-	bp:Destroy()
-end)
+for _,v in pairs(scriptsList) do
+	MakeButton(ScriptsTab,v[1],function()
+		loadstring(game:HttpGet(v[2],true))()
+	end)
+end
 
-print("✅ POR_GUI_V3 Horizontal - Loaded")
+print("✅ POR_GUI_V3 Horizontal Full Features Loaded")
