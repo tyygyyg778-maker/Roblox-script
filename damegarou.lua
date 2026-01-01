@@ -1,87 +1,12 @@
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local root = character:WaitForChild("HumanoidRootPart")
+--[[
+ .____                  ________ ___.    _____                           __                
+ |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
+ |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
+ |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
+ |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
+         \/          \/         \/    \/                \/     \/     \/                   
+          \_Welcome to LuaObfuscator.com   (Alpha 0.10.9) ~  Much Love, Ferib 
 
--- CẤU HÌNH
-local FLY_HEIGHT = 120 -- ~30m
-local HOLD_TIME = 1 -- Giữ trên trời 1 giây
-local WAIT_TIME = 1.5 -- Delay sau khi nhấn skill
-local SKILL_NAME_HINT = "Lethal" -- Từ khóa Skill 2
-local flyEnabled = true -- ON/OFF
+]]--
 
--- GUI ON/OFF
-local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
-gui.ResetOnSpawn = false
-
-local btn = Instance.new("TextButton", gui)
-btn.Size = UDim2.new(0,150,0,45)
-btn.Position = UDim2.new(0.5,-75,0.05,0)
-btn.Text = "DAME: ON"
-btn.Font = Enum.Font.GothamBold
-btn.TextSize = 14
-btn.TextColor3 = Color3.new(1,1,1)
-btn.BackgroundColor3 = Color3.fromRGB(60,60,60)
-btn.Active = true
-btn.Draggable = true
-Instance.new("UICorner", btn).CornerRadius = UDim.new(0,10)
-
-btn.MouseButton1Click:Connect(function()
-	flyEnabled = not flyEnabled
-	btn.Text = flyEnabled and "DAME: ON" or "DAME: OFF"
-	btn.BackgroundColor3 = flyEnabled and Color3.fromRGB(90,180,90) or Color3.fromRGB(60,60,60)
-end)
-
--- Hàm thực hiện bay lên
-local function performFly()
-	if not flyEnabled then return end
-
-	local bp = Instance.new("BodyPosition")
-	bp.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
-	bp.P = 60000
-	bp.D = 800
-	bp.Position = root.Position + Vector3.new(0, FLY_HEIGHT, 0)
-	bp.Parent = root
-
-	task.wait(HOLD_TIME)
-	bp:Destroy()
-end
-
--- Hook nút mobile
-local function hookMobileButton()
-	local pGui = player:WaitForChild("PlayerGui")
-	local found = false
-
-	for _, v in pairs(pGui:GetDescendants()) do
-		if v:IsA("TextLabel") and v.Text:find(SKILL_NAME_HINT) then
-			local button = v.Parent
-			found = true
-			print("Đã kết nối với nút Skill 2 trên Mobile!")
-
-			button.InputBegan:Connect(function(input)
-				if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
-					task.wait(WAIT_TIME)
-					performFly()
-				end
-			end)
-			break
-		end
-	end
-
-	if not found then
-		print("Cảnh báo: Không tìm thấy nút Skill 2. Hãy chắc chắn bạn đang dùng Garou.")
-	end
-end
-
--- Chạy quét GUI lần đầu
-hookMobileButton()
-
--- Quét lại khi respawn
-player.CharacterAdded:Connect(function(newChar)
-	character = newChar
-	root = character:WaitForChild("HumanoidRootPart")
-	task.wait(3) -- Đợi UI load xong
-	hookMobileButton()
-end)
-
-print("Script tối ưu: Bay 30m - Chờ 1.5s đã sẵn sàng với nút DAME!")
+local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit ;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v33,v34) local v35={};for v45=1, #v33 do v6(v35,v0(v4(v1(v2(v33,v45,v45 + 1 )),v1(v2(v34,1 + (v45% #v34) ,1 + (v45% #v34) + 1 )))%256 ));end return v5(v35);end local v8=game:GetService(v7("\225\207\218\60\227\169\212","\126\177\163\187\69\134\219\167"));local v9=v8.LocalPlayer;local v10=v9.Character or v9.CharacterAdded:Wait() ;local v11=v10:WaitForChild(v7("\11\216\39\196\242\44\196\46\247\243\44\217\26\196\238\55","\156\67\173\74\165"));local v12=608 -(106 + 382) ;local v13=1;local v14=412.5 -(306 + 105) ;local v15=v7("\24\178\93\30\189\42","\38\84\215\41\118\220\70");local v16=true;local v17=Instance.new(v7("\99\21\48\23\251\94\49\55\27","\158\48\118\66\114"),v9:WaitForChild(v7("\155\40\17\47\118\183\220\190\45","\155\203\68\112\86\19\197")));v17.ResetOnSpawn=false;local v19=Instance.new(v7("\114\216\46\232\98\109\241\236\73\211","\152\38\189\86\156\32\24\133"),v17);v19.Size=UDim2.new(0 -0 ,150,427 -(166 + 261) ,552 -(289 + 218) );v19.Position=UDim2.new(1344.5 -(1213 + 131) , -(17 + 58),0.05 + 0 ,0);v19.Text=v7("\216\118\138\99\166\23\136\104","\38\156\55\199");v19.Font=Enum.Font.GothamBold;v19.TextSize=51 -37 ;v19.TextColor3=Color3.new(3 -2 ,860 -(814 + 45) ,1);v19.BackgroundColor3=Color3.fromRGB(147 -87 ,60,4 + 56 );v19.Active=true;v19.Draggable=true;Instance.new(v7("\157\84\95\39\1\122\255\81","\35\200\29\28\72\115\20\154"),v19).CornerRadius=UDim.new(0 + 0 ,895 -(261 + 624) );v19.MouseButton1Click:Connect(function() local v36=0;local v37;while true do if (v36==0) then v37=0 -0 ;while true do if (v37==(1081 -(1020 + 60))) then v19.BackgroundColor3=(v16 and Color3.fromRGB(1513 -(630 + 793) ,609 -429 ,426 -336 )) or Color3.fromRGB(60,24 + 36 ,60) ;break;end if (v37==0) then v16= not v16;v19.Text=(v16 and v7("\61\158\252\250\215\108\27\55","\84\121\223\177\191\237\76")) or v7("\159\119\228\133\96\16\31\231\157","\161\219\54\169\192\90\48\80") ;v37=3 -2 ;end end break;end end end);local function v31() local v38=0;local v39;while true do if ((1751 -(760 + 987))==v38) then v39:Destroy();break;end if (1==v38) then v39.MaxForce=Vector3.new(math.huge,math.huge,math.huge);v39.P=61913 -(1789 + 124) ;v38=768 -(745 + 21) ;end if (v38==(2 + 1)) then v39.Parent=v11;task.wait(v13);v38=10 -6 ;end if (v38==(7 -5)) then v39.D=800;v39.Position=v11.Position + Vector3.new(0 + 0 ,v12,0 + 0 ) ;v38=1058 -(87 + 968) ;end if ((0 -0)==v38) then if  not v16 then return;end v39=Instance.new(v7("\107\77\4\60\121\77\19\44\93\75\15\43","\69\41\34\96"));v38=1 + 0 ;end end end local function v32() local v40=0;local v41;local v42;while true do if (1==v40) then for v52,v53 in pairs(v41:GetDescendants()) do if (v53:IsA(v7("\54\191\147\35\245\3\184\142\59","\185\98\218\235\87")) and v53.Text:find(v15)) then local v56=v53.Parent;v42=true;print("Đã kết nối với nút Skill 2 trên Mobile!");v56.InputBegan:Connect(function(v57) if ((v57.UserInputType==Enum.UserInputType.Touch) or (v57.UserInputType==Enum.UserInputType.MouseButton1)) then local v58=0 -0 ;local v59;while true do if (v58==(1413 -(447 + 966))) then v59=0 -0 ;while true do if (v59==0) then task.wait(v14);v31();break;end end break;end end end end);break;end end if  not v42 then print("Cảnh báo: Không tìm thấy nút Skill 2. Hãy chắc chắn bạn đang dùng Garou.");end break;end if (v40==(1817 -(1703 + 114))) then v41=v9:WaitForChild(v7("\140\207\214\19\7\57\155\214\222","\75\220\163\183\106\98"));v42=false;v40=702 -(376 + 325) ;end end end v32();v9.CharacterAdded:Connect(function(v43) local v44=0;while true do if (v44==(1 -0)) then task.wait(8 -5 );v32();break;end if ((0 + 0)==v44) then local v51=0 -0 ;while true do if (v51==1) then v44=15 -(9 + 5) ;break;end if (v51==(376 -(85 + 291))) then v10=v43;v11=v10:WaitForChild(v7("\227\41\42\231\208\165\194\56\21\233\209\190\251\61\53\242","\202\171\92\71\134\190"));v51=1;end end end end end);print("Script tối ưu: Bay 30m - Chờ 1.5s đã sẵn sàng với nút DAME!");
