@@ -5,7 +5,7 @@ local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 local CORRECT_KEY = "menuhub"
 local GET_KEY_LINK = "https://link-hub.net/2510474/i7rDTr1F8AgS"
 local SCRIPT_LINK = "https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/whitehub.lua"
-local SCARE_SCRIPT = "https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/refs/heads/main/do%E1%BA%A1ma.lua"
+local SCARE_SCRIPT = "https://codeberg.org/white-maker/white/raw/branch/main/saikey.lua"
 
 -- 🪟 WINDOW
 local Window = Rayfield:CreateWindow({
