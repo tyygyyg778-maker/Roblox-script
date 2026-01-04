@@ -56,7 +56,16 @@ MainTab:CreateButton({
 				Content = "Key đúng, đang mở script...",
 				Duration = 3
 			})
-			loadstring(game:HttpGet(SCRIPT_LINK))()
+			-- Key đúng: đợi 1s mới tắt menu
+			task.delay(1, function()
+				pcall(function() Rayfield:Destroy() end)
+				-- Sau khi tắt menu 1s nữa mới load script
+				task.delay(1, function()
+					pcall(function()
+						loadstring(game:HttpGet(SCRIPT_LINK))()
+					end)
+				end)
+			end)
 		else
 			locked = true
 			Rayfield:Notify({
@@ -64,13 +73,13 @@ MainTab:CreateButton({
 				Content = "Bạn đã nhập sai key...",
 				Duration = 2
 			})
-			task.delay(3, function()
-				pcall(function()
-					loadstring(game:HttpGet(SCARE_SCRIPT))()
-				end)
-				task.wait(0.5)
+			-- Key sai: đợi 2s trước khi tắt menu + chạy scare script
+			task.delay(2, function()
 				pcall(function()
 					Rayfield:Destroy()
+				end)
+				pcall(function()
+					loadstring(game:HttpGet(SCARE_SCRIPT))()
 				end)
 			end)
 		end
