@@ -75,7 +75,7 @@ end })
 
 -- 🟥 HITBOX (đã chuyển từ Speed x sang necessary)
 Tabnecessary:CreateButton({ Name = "Hitbox", Callback = function()
-    RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/Hitbox.lua")
+    RunScript("https://pastefy.app/MSv1vKJe/raw?part=hitbox.lua")
 end })
 
 -- ===== FLY =====
