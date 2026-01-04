@@ -34,7 +34,7 @@ Tabnecessary:CreateButton({ Name = "Lọ Vương", Callback = function()
 end })
 
 Tabnecessary:CreateButton({ Name = "Fake Lag", Callback = function()
-    RunScript("https://raw.githubusercontent.com/catwljz/mm/main/fakelag.txt")
+    RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/fakelag.lua")
 end })
 
 Tabnecessary:CreateButton({ Name = "Emotes", Callback = function()
