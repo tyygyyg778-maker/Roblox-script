@@ -1,34 +1,36 @@
--- Load Rayfield
+-- LOAD RAYFIELD
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
--- Window
+-- WINDOW
 local Window = Rayfield:CreateWindow({
-    Name = "WHITE HUB 4.2🐧",
+    Name = "WHITE HUB 4.2 🐧",
     LoadingTitle = "WHITE",
     LoadingSubtitle = "by white",
     ConfigurationSaving = { Enabled = false },
     KeySystem = false
 })
 
--- Tabs
+-- TABS
 local Tabnecessary    = Window:CreateTab("Necessary", 4483362458)
 local TabFly          = Window:CreateTab("Anti / Fly", 4483362458)
 local TabCrouch       = Window:CreateTab("Sit / Invisibility", 4483362458)
 local TabSpeedHitbox  = Window:CreateTab("Speed x / Blox Fruit", 4483362458)
 local TabCombat       = Window:CreateTab("Combat", 4483362458)
-local TabServer       = Window:CreateTab("Server", 4483362458)
 local TabMusic        = Window:CreateTab("Music Tool", 4483362458)
 local Tab99Night      = Window:CreateTab("99 Night", 4483362458)
 local TabBlueLock     = Window:CreateTab("Blue Lock", 4483362458)
 local TabTBS          = Window:CreateTab("TBS", 4483362458)
-local TabSealBrainrot = Window:CreateTab("Seal a Brainrot", 4483362458)
+local TabSealBrainrot = Window:CreateTab("Seal a brainrot", 4483362458)
+local TabSettings     = Window:CreateTab("Settings", 6031280882)
 
--- Helper function
+-- HELPER
 local function RunScript(url)
-    loadstring(game:HttpGet(url))()
+    pcall(function()
+        loadstring(game:HttpGet(url))()
+    end)
 end
 
--- ===== TAB NECESSARY =====
+-- ================= TAB NECESSARY =================
 Tabnecessary:CreateButton({ Name = "Lọ Vương", Callback = function()
     RunScript("https://pastefy.app/rNXbJXgI/raw?part=Lovuong.lua")
 end })
@@ -93,7 +95,15 @@ Tabnecessary:CreateButton({ Name = "Third-Person", Callback = function()
     RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/Phagocnhinthunhat.lua")
 end })
 
--- ===== TAB BLUE LOCK =====
+-- ➕ AUTO OBBY (ADDED)
+Tabnecessary:CreateButton({
+    Name = "Auto Obby",
+    Callback = function()
+        RunScript("https://pastefy.app/XvOGcVsU/raw?part=auto-obby.lua")
+    end
+})
+
+-- ================= TAB BLUE LOCK =================
 TabBlueLock:CreateButton({ Name = "Auto GK", Callback = function()
     RunScript("https://raw.githubusercontent.com/Youifpg/Arbix--Hub/refs/heads/main/Blue!ock.lua")
 end })
@@ -102,7 +112,7 @@ TabBlueLock:CreateButton({ Name = "Control Ball", Callback = function()
     RunScript("https://raw.githubusercontent.com/r4mpage4/LuaCom/refs/heads/main/ControlBall.rivals")
 end })
 
--- ===== TAB TBS =====
+-- ================= TAB TBS =================
 TabTBS:CreateButton({ Name = "Dame Garou", Callback = function()
     RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/damegarou.lua")
 end })
@@ -111,20 +121,15 @@ TabTBS:CreateButton({ Name = "Tổng Hợp TBS", Callback = function()
     RunScript("https://raw.githubusercontent.com/minhnhatdepzai8-cloud/TONG-HOP-SCRIPT/refs/heads/main/TSB")
 end })
 
--- ===== TAB SEAL A BRAINROT =====
-TabSealBrainrot:CreateButton({ Name = "Instant Steal", Callback = function()
-    RunScript("https://raw.githubusercontent.com/OP-Script-Hub/SAB/refs/heads/main/Instant%20Steal")
-end })
+-- ================= TAB SEAL A BRAINROT =================
+TabSealBrainrot:CreateButton({
+    Name = "Float",
+    Callback = function()
+        RunScript("https://pastefy.app/71BzrMMj/raw?part=brainrot.lua")
+    end
+})
 
-TabSealBrainrot:CreateButton({ Name = "ZZZZ's Lag Bomb", Callback = function()
-    RunScript("https://raw.githubusercontent.com/OP-Script-Hub/Desync.Lagger/refs/heads/main/zzzz-lagbomb")
-end })
-
-TabSealBrainrot:CreateButton({ Name = "Zzzz Hub", Callback = function()
-    RunScript("https://raw.githubusercontent.com/0P-Script-Hub/Zzzz.Hub/refs/heads/main/SAB-zzzhub")
-end })
-
--- ===== TAB FLY =====
+-- ================= TAB FLY =================
 TabFly:CreateButton({ Name = "Fly", Callback = function()
     RunScript("https://rawscripts.net/raw/Universal-Script-Better-Fly-GUI-44304")
 end })
@@ -137,7 +142,7 @@ TabFly:CreateButton({ Name = "VOID", Callback = function()
     RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/Void.lua")
 end })
 
--- ===== TAB SIT / INVISIBLE =====
+-- ================= TAB SIT / INVISIBLE =================
 TabCrouch:CreateButton({ Name = "Invisible", Callback = function()
     RunScript("https://rawscripts.net/raw/Universal-Script-Awesome-Invisible-man-21074")
 end })
@@ -146,7 +151,7 @@ TabCrouch:CreateButton({ Name = "Crouch", Callback = function()
     RunScript("https://raw.githubusercontent.com/Azizanzz0/Scripts/main/Crouching.txt")
 end })
 
--- ===== TAB SPEED / BLOX FRUIT =====
+-- ================= TAB SPEED / BLOX FRUIT =================
 TabSpeedHitbox:CreateButton({ Name = "Fix Lag", Callback = function()
     RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/Fixlag.lua")
 end })
@@ -165,7 +170,7 @@ TabSpeedHitbox:CreateButton({ Name = "Hinishi Hub", Callback = function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-Hinishi/Hinishi-Hub/main/Freemium.lua"))()
 end })
 
--- ===== TAB COMBAT =====
+-- ================= TAB COMBAT =================
 TabCombat:CreateButton({ Name = "Aimlock", Callback = function()
     RunScript("https://raw.githubusercontent.com/MerebennieOfficial/ExoticJn/main/AIMLOCK")
 end })
@@ -178,21 +183,21 @@ TabCombat:CreateButton({ Name = "Punch NPC", Callback = function()
     RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/Punchvisual.lua")
 end })
 
--- ===== TAB SERVER =====
-TabServer:CreateButton({ Name = "Hop Server", Callback = function()
+-- ================= TAB SERVER =================
+TabSettings:CreateButton({ Name = "Hop Server", Callback = function()
     RunScript("https://raw.githubusercontent.com/anuragaming1/Meow_gaming/main/Servervip.lua.txt")
 end })
 
-TabServer:CreateButton({ Name = "Save Position", Callback = function()
+TabSettings:CreateButton({ Name = "Save Position", Callback = function()
     RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/Menutele.lua")
 end })
 
--- ===== TAB MUSIC =====
+-- ================= TAB MUSIC =================
 TabMusic:CreateButton({ Name = "Music Player Tool", Callback = function()
     RunScript("https://raw.githubusercontent.com/tyygyyg778-maker/Roblox-script/main/phatnhac.lua")
 end })
 
--- ===== TAB 99 NIGHT =====
+-- ================= TAB 99 NIGHT =================
 Tab99Night:CreateButton({ Name = "Foxname Hub", Callback = function()
     RunScript("https://raw.githubusercontent.com/caomod2077/Script/main/FoxnameHub.lua")
 end })
@@ -201,7 +206,37 @@ Tab99Night:CreateButton({ Name = "Gec Hub", Callback = function()
     RunScript("https://raw.githubusercontent.com/GEC0/gec/main/Gec.Loader")
 end })
 
--- Notify
+-- ================= TAB SETTINGS =================
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local ServerId = ""
+
+TabSettings:CreateInput({
+    Name = "Server ID",
+    PlaceholderText = "Dán JobId server vào đây",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(text)
+        ServerId = text
+    end
+})
+
+TabSettings:CreateButton({
+    Name = "Join Server",
+    Callback = function()
+        if ServerId ~= "" then
+            TeleportService:TeleportToPlaceInstance(game.PlaceId, ServerId, LocalPlayer)
+        else
+            Rayfield:Notify({
+                Title = "Lỗi",
+                Content = "Chưa nhập Server ID",
+                Duration = 3
+            })
+        end
+    end
+})
+
+-- NOTIFY
 Rayfield:Notify({
     Title = "WHITE HUB 4.2",
     Content = "Loaded successfully",
