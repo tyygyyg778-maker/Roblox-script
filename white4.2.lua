@@ -1,1 +1,0 @@
-có con cak
