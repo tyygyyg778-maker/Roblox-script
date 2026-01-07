@@ -1,4 +1,4 @@
-local v14 = loadstring(game:HttpGet("https://sirius.menu/rayfield"))();
+local v14 = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))();
 local v15 = v14:CreateWindow({
     Title = "white 1.1 [Premium ]",-- thay tên bạn muốn đặt
     SubTitle = "By HoangAnh",-- tên bạn
