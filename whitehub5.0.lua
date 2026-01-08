@@ -9498,7 +9498,7 @@ v529:AddSlider({
     end
 });
 v529:AddSlider({
-    Title = "Nh\225\186\163y Cao by Dum hub", 
+    Title = "Nh\225\186\163y Cao by white hub", 
     Min = 50, 
     Max = 500, 
     Default = getgenv().JumpValue, 
