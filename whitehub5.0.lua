@@ -3837,7 +3837,7 @@ l_ScreenGui_0.Parent = game.CoreGui;
 local l_ImageButton_0 = Instance.new("ImageButton");
 l_ImageButton_0.Size = UDim2.new(0, 35, 0, 35);
 l_ImageButton_0.Position = UDim2.new(0.15, 0, 0.15, 0);
-l_ImageButton_0.Image = "rbxassetid://80424431930361";
+l_ImageButton_0.Image = "rbxassetid://96977589578872";
 l_ImageButton_0.BackgroundTransparency = 1;
 l_ImageButton_0.Parent = l_ScreenGui_0;
 local l_UICorner_0 = Instance.new("UICorner");
@@ -3994,8 +3994,8 @@ local _ = v520:AddSection({
     "Main Farm"
 });
 v520:AddToggle({
-    Name = "Auto Farm Level", 
-    Description = "Only Level 1 -> Level 2650", 
+    Name = "Auto Farm lv", 
+    Description = "Level 1 -> 2650", 
     Default = false, 
     Callback = function(v544) --[[ Line: 0 ]] --[[ Name:  ]]
         _G.AutoFarm = v544;
